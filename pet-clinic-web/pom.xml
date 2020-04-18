@@ -13,8 +13,9 @@
 
     <dependencies>
         <dependency>
-            <artifactId>pet-clinic-data</artifactId>
             <groupId>altayo.spring</groupId>
+            <artifactId>pet-clinic-data</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
