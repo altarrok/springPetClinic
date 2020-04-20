@@ -4,8 +4,6 @@ import altayo.spring.petclinic.model.Owner;
 import altayo.spring.petclinic.model.Vet;
 import altayo.spring.petclinic.services.OwnerService;
 import altayo.spring.petclinic.services.VetService;
-import altayo.spring.petclinic.services.map.OwnerServiceMap;
-import altayo.spring.petclinic.services.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +13,9 @@ public class DataBoot implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataBoot() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+    public DataBoot(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override

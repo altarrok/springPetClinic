@@ -2,9 +2,11 @@ package altayo.spring.petclinic.services.map;
 
 import altayo.spring.petclinic.model.Vet;
 import altayo.spring.petclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
     @Override
     public Set<Vet> findAll() {
