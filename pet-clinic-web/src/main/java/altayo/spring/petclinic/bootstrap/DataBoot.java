@@ -1,11 +1,9 @@
 package altayo.spring.petclinic.bootstrap;
 
-import altayo.spring.petclinic.model.Owner;
-import altayo.spring.petclinic.model.Pet;
-import altayo.spring.petclinic.model.PetType;
-import altayo.spring.petclinic.model.Vet;
+import altayo.spring.petclinic.model.*;
 import altayo.spring.petclinic.services.OwnerService;
 import altayo.spring.petclinic.services.PetTypeService;
+import altayo.spring.petclinic.services.SpecialtyService;
 import altayo.spring.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,16 +16,25 @@ public class DataBoot implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
+    private final SpecialtyService specialtyService;
 
-    public DataBoot(OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+    public DataBoot(OwnerService ownerService, VetService vetService,
+                    PetTypeService petTypeService, SpecialtyService specialtyService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
+        this.specialtyService = specialtyService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
+        int count = petTypeService.findAll().size();
+        if (count == 0) loadData();
+        System.out.println("## Bootstrap successful");
+    }
+
+    private void loadData() {
         PetType dog = new PetType();
         dog.setName("Dog");
         PetType savedDogPetType = petTypeService.save(dog);
@@ -35,6 +42,18 @@ public class DataBoot implements CommandLineRunner {
         PetType cat = new PetType();
         cat.setName("Cat");
         PetType savedCatPetType = petTypeService.save(cat);
+
+        Specialty radiology = new Specialty();
+        radiology.setDescription("Radiology");
+        Specialty savedRadiology = specialtyService.save(radiology);
+
+        Specialty surgery = new Specialty();
+        surgery.setDescription("Surgery");
+        Specialty savedSurgery = specialtyService.save(surgery);
+
+        Specialty dentistry = new Specialty();
+        dentistry.setDescription("Dentistry");
+        Specialty savedDentistry = specialtyService.save(dentistry);
 
         Owner owner1 = new Owner();
         owner1.setFirstName("Juice");
@@ -68,15 +87,17 @@ public class DataBoot implements CommandLineRunner {
         Vet vet1 = new Vet();
         vet1.setFirstName("Ukra");
         vet1.setLastName("Appu");
+        vet1.getSpecialties().add(savedRadiology);
 
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
         vet2.setFirstName("Christophe");
         vet2.setLastName("Paolina");
+        vet2.getSpecialties().add(savedSurgery);
+        vet2.getSpecialties().add(savedDentistry);
 
         vetService.save(vet2);
 
-        System.out.println("## Bootstrap successful");
     }
 }

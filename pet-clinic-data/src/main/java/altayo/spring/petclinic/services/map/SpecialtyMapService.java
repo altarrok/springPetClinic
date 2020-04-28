@@ -2,9 +2,11 @@ package altayo.spring.petclinic.services.map;
 
 import altayo.spring.petclinic.model.Specialty;
 import altayo.spring.petclinic.services.SpecialtyService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class SpecialtyMapService extends AbstractMapService<Specialty, Long> implements SpecialtyService {
     @Override
     public Set<Specialty> findAll() {
