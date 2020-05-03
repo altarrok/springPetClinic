@@ -1,10 +1,7 @@
 package altayo.spring.petclinic.bootstrap;
 
 import altayo.spring.petclinic.model.*;
-import altayo.spring.petclinic.services.OwnerService;
-import altayo.spring.petclinic.services.PetTypeService;
-import altayo.spring.petclinic.services.SpecialtyService;
-import altayo.spring.petclinic.services.VetService;
+import altayo.spring.petclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,13 +14,15 @@ public class DataBoot implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
     public DataBoot(OwnerService ownerService, VetService vetService,
-                    PetTypeService petTypeService, SpecialtyService specialtyService) {
+                    PetTypeService petTypeService, SpecialtyService specialtyService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
