@@ -5,11 +5,13 @@ import altayo.spring.petclinic.model.Pet;
 import altayo.spring.petclinic.services.OwnerService;
 import altayo.spring.petclinic.services.PetService;
 import altayo.spring.petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;
