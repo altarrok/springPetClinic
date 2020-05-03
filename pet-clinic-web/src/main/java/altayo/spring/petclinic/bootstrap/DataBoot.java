@@ -81,7 +81,15 @@ public class DataBoot implements CommandLineRunner {
         pet2.setPetType(savedCatPetType);
         pet2.setBirthDate(LocalDate.now());
         pet2.setOwner(owner2);
+        owner2.getPets().add(pet2);
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(pet2);
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("Looking for cats");
+
+        visitService.save(catVisit);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Ukra");
