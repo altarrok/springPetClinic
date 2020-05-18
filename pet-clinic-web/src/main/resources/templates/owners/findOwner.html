@@ -29,6 +29,9 @@
   </form>
 
   <br />
+  <form th:action="@{/owners/list}" th:object="${owner}" method="get">
+    <button type="submit" class="btn btn-default"> List All Owners </button>
+  </form>
   <a class="btn btn-default" th:href="@{/owners/create}">Add Owner</a>
 
 </body>
